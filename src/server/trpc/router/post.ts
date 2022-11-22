@@ -58,4 +58,10 @@ export const postRouter = router({
       },
     });
   }),
+
+  deletePost: protectedProcedure.input(z.object({ id: z.string() })).mutation(async ({ ctx, input }) => {
+    return ctx.prisma.post.delete({
+      where: { id: input.id },
+    });
+  }),
 });

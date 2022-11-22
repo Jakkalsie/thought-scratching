@@ -45,6 +45,14 @@ const Edit = () => {
     router.push(`/posts/${id}`);
   };
 
+  const deletePost = trpc.post.deletePost.useMutation();
+  const handlePostDelete = async () => {
+    if (!post) return;
+
+    await deletePost.mutateAsync({ id });
+    router.push("/");
+  };
+
   return (
     <>
       <Head>
@@ -67,6 +75,11 @@ const Edit = () => {
             <button className="text-sm font-medium text-secondary hover:text-accent" onClick={handlePostUpdate}>
               ← Back to post
             </button>
+            {session?.user?.admin && (
+              <button className="text-sm font-medium text-secondary hover:text-accent" onClick={handlePostDelete}>
+                New
+              </button>
+            )}
           </div>
           <input
             type="text"
