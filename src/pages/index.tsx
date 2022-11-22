@@ -1,4 +1,4 @@
-import { type NextPage } from "next";
+import type { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
@@ -88,6 +88,28 @@ const Home: NextPage = () => {
       </main>
     </>
   );
+};
+
+import { createContextInner } from "../server/trpc/context";
+import { appRouter } from "../server/trpc/router/_app";
+import superjson from "superjson";
+import { createProxySSGHelpers } from "@trpc/react-query/ssg";
+
+export const getStaticProps = async () => {
+  const ssg = createProxySSGHelpers({
+    router: appRouter,
+    ctx: await createContextInner({ session: null }),
+    transformer: superjson,
+  });
+
+  await ssg.post.getAll.prefetch();
+
+  return {
+    props: {
+      trpcState: ssg.dehydrate(),
+    },
+    revalidate: 120,
+  };
 };
 
 export default Home;
