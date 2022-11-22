@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-  const { data: session } = useSession({ required: true });
+  const { data: session } = useSession();
   const { data: posts } = trpc.post.getAll.useQuery();
   const router = useRouter();
 
@@ -29,7 +29,11 @@ const Home: NextPage = () => {
       </Head>
       <main className="min-h-screen bg-light p-8">
         <nav className="mx-auto flex max-w-8xl justify-between">
-          <Image src={session?.user?.image || "/fallback.webp"} width={40} height={40} className="rounded-full" alt="Profile Image" />
+          {session?.user ? (
+            <Image src={session?.user?.image || "/fallback.webp"} width={40} height={40} className="rounded-full" alt="Profile Image" />
+          ) : (
+            <Link href="/api/auth/signin">Sign In</Link>
+          )}
           <ul className="flex gap-8 text-sm font-medium text-secondary">
             <li>Home</li>
             <li className="text-accent underline underline-offset-8">Blog</li>
