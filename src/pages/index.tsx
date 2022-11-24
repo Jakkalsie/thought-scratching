@@ -63,7 +63,7 @@ const Home: NextPage = () => {
                 alt="Featured Post Image"
                 priority
               />
-              <div className="col-span-2 flex flex-col justify-between gap-4 xl:block">
+              <div className="col-span-2 flex flex-col justify-between gap-4">
                 <span className="text-sm font-medium text-dark">
                   {featuredPost?.author?.name?.split(" ").at(0)} {featuredPost?.createdAt.toDateString()}
                 </span>
