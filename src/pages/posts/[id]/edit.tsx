@@ -77,7 +77,7 @@ const Edit = () => {
             </button>
             {session?.user?.admin && (
               <button className="text-sm font-medium text-secondary hover:text-accent" onClick={handlePostDelete}>
-                New
+                Delete
               </button>
             )}
           </div>

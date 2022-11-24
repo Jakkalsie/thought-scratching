@@ -23,6 +23,9 @@ export const postRouter = router({
       include: {
         author: true,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
   }),
   createPost: protectedProcedure.input(z.object({ title: z.string(), content: z.string() })).mutation(async ({ ctx, input }) => {
