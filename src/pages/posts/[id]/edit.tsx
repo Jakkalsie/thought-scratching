@@ -83,13 +83,13 @@ const Edit = () => {
           </div>
           <input
             type="text"
-            className="bg-light p-2 text-5xl font-medium text-primary focus:outline-none xl:text-6xl "
+            className="bg-light text-5xl font-medium text-primary focus:outline-none xl:text-6xl "
             value={post?.title || ""}
             onChange={(e) => handlePostChange({ title: e.currentTarget.value })}
           />
 
           <TextareaAutosize
-            className="prose max-w-full resize-none whitespace-pre-wrap bg-light p-2 focus:outline-none lg:prose-xl"
+            className="prose max-w-full resize-none whitespace-pre-wrap bg-light focus:outline-none lg:prose-xl"
             value={post?.content || ""}
             onChange={(e) => handlePostChange({ content: e.currentTarget.value })}
           />
