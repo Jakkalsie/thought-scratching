@@ -89,7 +89,7 @@ const Edit = () => {
           />
 
           <TextareaAutosize
-            className="prose max-w-none resize-none bg-light p-2 focus:outline-none lg:prose-xl"
+            className="prose max-w-full resize-none whitespace-pre-wrap bg-light p-2 focus:outline-none lg:prose-xl"
             value={post?.content || ""}
             onChange={(e) => handlePostChange({ content: e.currentTarget.value })}
           />

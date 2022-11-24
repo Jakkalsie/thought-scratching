@@ -46,7 +46,7 @@ const PostViewPage = ({ id }: InferGetStaticPropsType<typeof getStaticProps>) =>
             {data?.author.name?.split(" ").at(0)} {data?.createdAt.toDateString()}
           </span>
 
-          <div className="prose mt-8 max-w-none whitespace-pre lg:prose-xl" dangerouslySetInnerHTML={{ __html: data?.content || "" }} />
+          <div className="prose mt-8 max-w-full whitespace-pre-wrap lg:prose-xl">{data?.content}</div>
         </article>
       </main>
     </>
