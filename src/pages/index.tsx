@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { trpc } from "../utils/trpc";
 
+const getImageUrl = (id: string) => `https://picsum.photos/seed/${id}/960/560`;
+
 const Home: NextPage = () => {
   const { data: session } = useSession();
   const { data: posts } = trpc.post.getAll.useQuery();
@@ -56,7 +58,7 @@ const Home: NextPage = () => {
               className="flex grid-cols-5 flex-col gap-8 rounded-xl p-4 duration-100 hover:bg-slate-300 md:col-span-2 xl:col-span-3 xl:grid"
             >
               <Image
-                src={featuredPost?.image || "/fallback.webp"}
+                src={getImageUrl(featuredPost.id) || "/fallback.webp"}
                 width={960}
                 height={560}
                 className="col-span-3 h-full rounded-lg"
@@ -76,7 +78,7 @@ const Home: NextPage = () => {
           )}
           {otherPosts?.map((post) => (
             <Link key={post.id} href={`/posts/${post.id}`} className="flex flex-col gap-4 rounded-lg p-4 duration-100 hover:bg-slate-300">
-              <Image src={post.image || "/fallback.webp"} width={960} height={560} className="rounded-lg" alt="Featured Post Image" />
+              <Image src={getImageUrl(post.id) || "/fallback.webp"} width={960} height={560} className="rounded-lg" alt="Featured Post Image" />
               <span className="text-sm font-medium text-dark">
                 {post.author.name?.split(" ").at(0)} {post.createdAt.toDateString()}
               </span>

@@ -20,7 +20,6 @@ model Post {
 
   title   String @db.Text
   content String @db.LongText
-  image   String @db.Text
 
   createdAt DateTime @default(now())
 }
